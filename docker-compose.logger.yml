@@ -1,0 +1,6 @@
+services:
+  gems-sales-webhook-logger:
+    container_name: wh-logger
+    image: webhook-logger:latest
+    volumes:
+      - /var/log/gems/bitrix-notifier/:/var/log/gems/bitrix-notifier/

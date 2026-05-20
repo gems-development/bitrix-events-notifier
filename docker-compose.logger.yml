@@ -1,0 +1,8 @@
+services:
+  gems-sales-webhook-logger:
+    container_name: webhook-logger
+    image: gems-sales-webhook-logger:latest
+    ports:
+      - 8082:8080
+    volumes:
+      - /var/log/gems/bitrix-notifier/:/var/log/gems/bitrix-notifier/

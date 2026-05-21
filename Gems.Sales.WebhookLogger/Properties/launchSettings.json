@@ -15,9 +15,11 @@
       "dotnetRunMessages": true,
       "launchBrowser": false,
       "applicationUrl": "https://localhost:7286;http://localhost:5173",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development",
+          "BOT_TOKEN": "1234567890:ABCdefGHIjklMNOpqrsTUVwxyz",
+          "GROUP_CHAT_ID": "12345"
+        }
       }
     }
   }
-}

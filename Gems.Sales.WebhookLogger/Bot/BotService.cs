@@ -3,6 +3,8 @@ using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request.Message;
 using Microsoft.Extensions.Options;
+using Serilog;
+using System.Text.RegularExpressions;
 
 namespace Gems.Sales.WebhookLogger.Bot
 {
@@ -23,11 +25,32 @@ namespace Gems.Sales.WebhookLogger.Bot
                 {
                     if (update is MessageCreatedUpdate messageCreated)
                     {
-                        Console.WriteLine($"Сообщение: {messageCreated.Message?.Body?.Text}");
-
-                        if (messageCreated.Message?.Body?.Text == "/start")
+                        Log.Information($"Получено сообщение: {messageCreated.Message?.Body?.Text}");
+                        string? msgText = messageCreated.Message?.Body?.Text;
+                        switch(msgText)
                         {
-                            await SendWelcomeMessage(Convert.ToInt32(usersMapOptions));
+                            //Пользователь отправил /start
+                            case "/start":
+                                await SendWelcomeMessage(Convert.ToInt32(usersMapOptions));
+                                break;
+                            //Пользователь отправил тег например @user1
+                            case string text when text.Contains("@"):
+                                var tagMatch = Regex.Match(msgText, @"@\w+");
+                                if (tagMatch.Success)
+                                {
+                                    string tag = tagMatch.Value;
+                                    string nickname = tag.Trim('@');
+                                    string bitrixId = GetBitrixId(nickname, usersMapOptions);
+                                    if (!string.IsNullOrEmpty(bitrixId))
+                                    {
+                                        Log.Information($"Найден битрикс пользователя {nickname}");
+                                    }
+                                    else
+                                    {
+                                        Log.Information($"Битрикс пользователя {nickname} не найден");
+                                    }
+                                }
+                                break;
                         }
                     }
                 },
@@ -38,12 +61,46 @@ namespace Gems.Sales.WebhookLogger.Bot
         //Метод для отправки сообщения
         public async Task SendWelcomeMessage(long chatId)
         {
-            Console.WriteLine($"Бот отправил сообщение {chatId}");
             await _botClient.SendMessageAsync(new SendMessageRequest
             {
                 ChatId = chatId,
                 Text = "Добро пожаловать!"
             });
+            Log.Information($"Отправлено сообщение для {chatId}");
+        }
+        //Метод для проверки наличия пользователя макса в битрикс (Пока что сравнение не id макса, а тега)
+        public static string GetBitrixId(string taggedUser, IOptions<UsersMapOptions> options)
+        {
+            if (!string.IsNullOrEmpty(taggedUser) && options.Value.Map != null)
+            {
+                if (options.Value.Map.TryGetValue(taggedUser, out var bitrixId))
+                {
+                    return bitrixId;
+                }
+                return string.Empty;
+            }
+            return string.Empty;
+        }
+        //Test for GetBitrixId method(можно удалить)
+        public static string TestGetBitrixId(IOptions<UsersMapOptions> usersMapOptions)
+        {
+            string? msgText = "Hello, @USER2_CHAT_ID, howdau?";
+            switch (msgText)
+            {
+                //Пользователь отправил тег например @user1
+                case string text when text.Contains("@"):
+                    var tagMatch = Regex.Match(msgText, @"@\w+");
+                if (tagMatch.Success)
+                {
+                    string tag = tagMatch.Value;
+                    string nickname = tag.Trim('@');
+                    string bitrixId = GetBitrixId(nickname, usersMapOptions);
+                    if (!string.IsNullOrEmpty(bitrixId)) { return bitrixId; }
+                    return string.Empty;
+                }
+                return string.Empty;
+            }
+            return string.Empty;
         }
     }
 }

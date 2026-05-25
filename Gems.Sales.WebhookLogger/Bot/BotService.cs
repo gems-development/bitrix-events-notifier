@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Gems.Sales.WebhookLogger.Bot
 {
-    public class BotService
+    public class BotService : IMessenger
     {
         private readonly IMaxBotClient _botClient;
 
@@ -44,6 +44,7 @@ namespace Gems.Sales.WebhookLogger.Bot
                                     if (!string.IsNullOrEmpty(bitrixId))
                                     {
                                         Log.Information($"Найден битрикс пользователя {nickname}");
+                                        await SendNotification(Convert.ToInt32(tag));
                                     }
                                     else
                                     {
@@ -58,7 +59,7 @@ namespace Gems.Sales.WebhookLogger.Bot
                 timeout: 90,
                 types: new List<string> { UpdateTypes.MessageCreated });
         }
-        //Метод для отправки сообщения
+        //Метод для отправки приветственного сообщения
         public async Task SendWelcomeMessage(long chatId)
         {
             await _botClient.SendMessageAsync(new SendMessageRequest
@@ -66,10 +67,20 @@ namespace Gems.Sales.WebhookLogger.Bot
                 ChatId = chatId,
                 Text = "Добро пожаловать!"
             });
-            Log.Information($"Отправлено сообщение для {chatId}");
+            Log.Information($"Отправлено приветственное сообщение для {chatId}");
+        }
+        //Метод для отправки приветственного сообщения
+        public async Task SendNotification(long chatId)
+        {
+            await _botClient.SendMessageAsync(new SendMessageRequest
+            {
+                ChatId = chatId,
+                Text = "Вы упомянуты в лиде"
+            });
+            Log.Information($"Отправлено уведомление для {chatId}");
         }
         //Метод для проверки наличия пользователя макса в битрикс (Пока что сравнение не id макса, а тега)
-        public static string GetBitrixId(string taggedUser, IOptions<UsersMapOptions> options)
+        private static string GetBitrixId(string taggedUser, IOptions<UsersMapOptions> options)
         {
             if (!string.IsNullOrEmpty(taggedUser) && options.Value.Map != null)
             {
@@ -84,21 +95,21 @@ namespace Gems.Sales.WebhookLogger.Bot
         //Test for GetBitrixId method(можно удалить)
         public static string TestGetBitrixId(IOptions<UsersMapOptions> usersMapOptions)
         {
-            string? msgText = "Hello, @USER2_CHAT_ID, howdau?";
+            string? msgText = "Hello, @USER20_CHAT_ID, howdau?";
             switch (msgText)
             {
                 //Пользователь отправил тег например @user1
                 case string text when text.Contains("@"):
                     var tagMatch = Regex.Match(msgText, @"@\w+");
-                if (tagMatch.Success)
-                {
-                    string tag = tagMatch.Value;
-                    string nickname = tag.Trim('@');
-                    string bitrixId = GetBitrixId(nickname, usersMapOptions);
-                    if (!string.IsNullOrEmpty(bitrixId)) { return bitrixId; }
+                    if (tagMatch.Success)
+                    {
+                        string tag = tagMatch.Value;
+                        string nickname = tag.Trim('@');
+                        string bitrixId = GetBitrixId(nickname, usersMapOptions);
+                        if (!string.IsNullOrEmpty(bitrixId)) { return bitrixId; }
+                        return string.Empty;
+                    }
                     return string.Empty;
-                }
-                return string.Empty;
             }
             return string.Empty;
         }

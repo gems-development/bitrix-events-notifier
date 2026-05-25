@@ -7,24 +7,28 @@
       "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\models\\usersmapoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\models\\usersmapoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\bot\\botservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\bot\\botservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\models\\bitrixdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\models\\bitrixdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\bot\\botservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\bot\\botservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\models\\usersmapoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\models\\usersmapoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\models\\bitrixwebhookrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\models\\bitrixwebhookrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\bot\\imessenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|solutionrelative:gems.sales.webhooklogger\\bot\\imessenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F311F00-9253-22BD-3DE0-FF03429A4BD2}|Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj|c:\\users\\user\\source\\repos\\bitrix-events-notifier\\gems.sales.webhooklogger\\gems.sales.webhooklogger.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -48,7 +52,7 @@
               "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Program.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Program.cs",
               "RelativeToolTip": "Gems.Sales.WebhookLogger\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAADwAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-21T06:57:21.39Z",
               "IsPinned": true,
@@ -56,21 +60,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\appsettings.json",
               "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\appsettings.json",
               "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\appsettings.json",
               "RelativeToolTip": "Gems.Sales.WebhookLogger\\appsettings.json",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABcAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-05-21T06:57:27.709Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Properties\\launchSettings.json",
@@ -79,26 +82,24 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-05-21T06:57:30.326Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "BotService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Bot\\BotService.cs",
               "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Bot\\BotService.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Bot\\BotService.cs",
               "RelativeToolTip": "Gems.Sales.WebhookLogger\\Bot\\BotService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-21T08:58:14.788Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "UsersMapOptions.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Models\\UsersMapOptions.cs",
               "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Models\\UsersMapOptions.cs",
@@ -107,35 +108,44 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-21T08:46:46.236Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BitrixDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Models\\BitrixDto.cs",
-              "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Models\\BitrixDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Models\\BitrixDto.cs",
-              "RelativeToolTip": "Gems.Sales.WebhookLogger\\Models\\BitrixDto.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBAAAAAgAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "BitrixWebhookRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Models\\BitrixWebhookRequestDto.cs",
+              "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Models\\BitrixWebhookRequestDto.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Models\\BitrixWebhookRequestDto.cs",
+              "RelativeToolTip": "Gems.Sales.WebhookLogger\\Models\\BitrixWebhookRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-21T07:07:12.214Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Gems.Sales.WebhookLogger",
+              "Title": "IMessenger.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Bot\\IMessenger.cs",
+              "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Bot\\IMessenger.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Bot\\IMessenger.cs",
+              "RelativeToolTip": "Gems.Sales.WebhookLogger\\Bot\\IMessenger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T09:21:07.126Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Gems.Sales.WebhookLogger.csproj",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj",
               "RelativeDocumentMoniker": "Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj",
               "ToolTip": "C:\\Users\\user\\source\\repos\\bitrix-events-notifier\\Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj",
               "RelativeToolTip": "Gems.Sales.WebhookLogger\\Gems.Sales.WebhookLogger.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-22T07:56:41.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-22T07:56:41.579Z"
             }
           ]
         }

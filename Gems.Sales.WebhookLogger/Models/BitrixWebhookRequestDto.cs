@@ -1,6 +1,6 @@
 ﻿namespace Gems.Sales.WebhookLogger.Models
 {
-    public class BitrixDto
+    public class BitrixWebhookRequestDto
     {
         //Dto для лида
         public class Lead

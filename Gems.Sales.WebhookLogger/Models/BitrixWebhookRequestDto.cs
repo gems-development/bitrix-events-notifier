@@ -2,6 +2,7 @@
 {
     public class BitrixWebhookRequestDto
     {
+        public int[] UserIds { get; set; }
         //Dto для лида
         public class Lead
         {

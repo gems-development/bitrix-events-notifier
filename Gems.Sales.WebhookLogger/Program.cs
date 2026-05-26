@@ -1,7 +1,10 @@
 using Gems.Sales.WebhookLogger.Bot;
+using Gems.Sales.WebhookLogger.Handlers;
 using Gems.Sales.WebhookLogger.Models;
+using Gems.Sales.WebhookLogger.UseCases.NotifyTaggedUsers;
 using MAX.Bot.Extensions;
 using MAX.Bot.Interfaces.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -29,6 +32,10 @@ Log.Information("Токен бота найден");
 builder.Services.AddTransient<BotService>();
 builder.Services.AddMaxBotClient(botToken);
 
+builder.Services.AddSingleton<IBitrixService, BitrixService>();
+builder.Services.AddSingleton<IMessenger, MessageSender>();
+builder.Services.AddSingleton<IMessageHandler, MessageHandler>();
+builder.Services.AddSingleton<BotService>();
 //Настройка для Consul
 builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", options => {
         options.ConsulConfigurationOptions = cco => {
@@ -42,13 +49,14 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 	app.MapOpenApi();
-/* Доделать медиатр
-app.MapPost("/webhooks", async([FromBody] BitrixWebhookRequestDto request, IMessenger messenger) =>
+app.MapPost("/webhooks", async([FromBody] BitrixWebhookRequestDto request, ISender sender, CancellationToken cancellationToken) =>
 	{
+        var command = new NotifyTaggedUsersCommand(request.UserIds);
+        
+        await sender.Send(command, cancellationToken);
 
-        await messenger.SendNotification(12345678910);
-	});
-*/
+        Results.Ok();
+    });
 using var scope = app.Services.CreateScope();
 var usersMapOptions = scope.ServiceProvider.GetRequiredService<IOptions<UsersMapOptions>>();
 
@@ -60,7 +68,7 @@ await botService.StartBot(usersMapOptions);
 // тест GetBitrixId
 //TestBitrix();
 await app.RunAsync();
-
+/*
 void TestBitrix()
 {
     string test = BotService.TestGetBitrixId(usersMapOptions);
@@ -72,4 +80,4 @@ void TestBitrix()
     {
         Log.Information($"Битрикс пользователя {test} не найден");
     }
-}
+}*/

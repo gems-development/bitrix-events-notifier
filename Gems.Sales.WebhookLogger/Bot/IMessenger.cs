@@ -2,7 +2,7 @@
 {
     public interface IMessenger
     {
-        public Task SendWelcomeMessage(long chatId);
-        public Task SendNotification(long chatId);
+        Task SendWelcomeMessage(long chatId);
+        Task SendNotification(long chatId);
     }
 }

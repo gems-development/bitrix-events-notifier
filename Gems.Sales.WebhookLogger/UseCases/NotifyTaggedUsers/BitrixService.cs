@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 namespace Gems.Sales.WebhookLogger.UseCases.NotifyTaggedUsers
 {
     public class BitrixService: IBitrixService
-    {
+    {//ВОЗМОЖНО УДАЛИТЬ НАДО    
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
 
         public BitrixService(IOptions<UsersMapOptions> usersMapOptions)

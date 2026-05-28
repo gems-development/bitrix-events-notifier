@@ -2,6 +2,6 @@
 
 namespace Gems.Sales.WebhookLogger.UseCases.NotifyTaggedUsers
 {
-    public record NotifyTaggedUsersCommand(List<string> UserIds) : IRequest;
+    public record NotifyTaggedUsersCommand(int[] bitrixUserIds) : IRequest;
 
 }

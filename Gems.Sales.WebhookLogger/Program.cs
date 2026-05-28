@@ -1,5 +1,5 @@
+using Gems.Sales.WebhookLogger;
 using Gems.Sales.WebhookLogger.Bot;
-using Gems.Sales.WebhookLogger.Handlers;
 using Gems.Sales.WebhookLogger.Models;
 using Gems.Sales.WebhookLogger.UseCases.NotifyTaggedUsers;
 using MAX.Bot.Extensions;
@@ -33,9 +33,8 @@ builder.Services.AddTransient<BotService>();
 builder.Services.AddMaxBotClient(botToken);
 
 builder.Services.AddSingleton<IBitrixService, BitrixService>();
-builder.Services.AddSingleton<IMessenger, MessageSender>();
-builder.Services.AddSingleton<IMessageHandler, MessageHandler>();
-builder.Services.AddSingleton<BotService>();
+builder.Services.AddScoped<IMessenger, MaxMessenger>();
+builder.Services.AddScoped<BotService>();
 //Настройка для Consul
 builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", options => {
         options.ConsulConfigurationOptions = cco => {
@@ -65,19 +64,4 @@ var usersMapOptions = scope.ServiceProvider.GetRequiredService<IOptions<UsersMap
 var botService = scope.ServiceProvider.GetRequiredService<BotService>();
 await botService.StartBot(usersMapOptions);
 */
-// тест GetBitrixId
-//TestBitrix();
 await app.RunAsync();
-/*
-void TestBitrix()
-{
-    string test = BotService.TestGetBitrixId(usersMapOptions);
-    if (!string.IsNullOrEmpty(test))
-    {
-        Log.Information($"Найден битрикс пользователя {test}");
-    }
-    else
-    {
-        Log.Information($"Битрикс пользователя {test} не найден");
-    }
-}*/

@@ -1,8 +1,6 @@
-﻿using Consul;
-using Gems.Sales.WebhookLogger.Bot;
+﻿using Gems.Sales.WebhookLogger.Bot;
 using Gems.Sales.WebhookLogger.Models;
 using MediatR;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.Extensions.Options;
 using Serilog;
 

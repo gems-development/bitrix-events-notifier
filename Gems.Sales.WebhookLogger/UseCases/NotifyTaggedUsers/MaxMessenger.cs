@@ -1,7 +1,6 @@
 ﻿using Gems.Sales.WebhookLogger.Bot;
 using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models.Request.Message;
-using Serilog;
 
 namespace Gems.Sales.WebhookLogger.UseCases.NotifyTaggedUsers
 {

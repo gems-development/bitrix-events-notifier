@@ -1,12 +1,9 @@
-using Gems.Sales.WebhookLogger;
 using Gems.Sales.WebhookLogger.Bot;
 using Gems.Sales.WebhookLogger.Models;
 using Gems.Sales.WebhookLogger.UseCases.NotifyTaggedUsers;
 using MAX.Bot.Extensions;
-using MAX.Bot.Interfaces.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Serilog;
 using Winton.Extensions.Configuration.Consul;
 
@@ -29,12 +26,8 @@ builder.Services.Configure<UsersMapOptions>(builder.Configuration.GetSection(Use
 //Проверка наличия токена
 var botToken = Environment.GetEnvironmentVariable("BOT_TOKEN") ?? throw new Exception("Токен бота не найден");
 Log.Information("Токен бота найден");
-builder.Services.AddTransient<BotService>();
 builder.Services.AddMaxBotClient(botToken);
-
-builder.Services.AddSingleton<IBitrixService, BitrixService>();
 builder.Services.AddScoped<IMessenger, MaxMessenger>();
-builder.Services.AddScoped<BotService>();
 //Настройка для Consul
 builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", options => {
         options.ConsulConfigurationOptions = cco => {
@@ -44,6 +37,7 @@ builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", op
     options.PollWaitTime = TimeSpan.FromSeconds(30);
 });
 
+//builder.Services.AddHostedService<BotHostedService>();  !НУЖЕН ТОКЕН ДЛЯ ЗАПУСКА!
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -56,12 +50,5 @@ app.MapPost("/webhooks", async([FromBody] BitrixWebhookRequestDto request, ISend
 
         Results.Ok();
     });
-using var scope = app.Services.CreateScope();
-var usersMapOptions = scope.ServiceProvider.GetRequiredService<IOptions<UsersMapOptions>>();
 
-/* !НУЖЕН ТОКЕН ДЛЯ ЗАПУСКА!
-//Запуск бота
-var botService = scope.ServiceProvider.GetRequiredService<BotService>();
-await botService.StartBot(usersMapOptions);
-*/
 await app.RunAsync();

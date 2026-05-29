@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace Gems.Sales.WebhookLogger.Models
+﻿namespace Gems.Sales.WebhookLogger.Models
 {
     public class UsersMapOptions
     {

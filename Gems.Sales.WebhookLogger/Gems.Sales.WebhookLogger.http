@@ -1,6 +1,0 @@
-@Gems.Sales.WebhookLogger_HostAddress = http://localhost:5173
-
-GET {{Gems.Sales.WebhookLogger_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

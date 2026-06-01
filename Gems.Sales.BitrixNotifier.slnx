@@ -1,3 +1,3 @@
 <Solution>
-  <Project Path="Gems.Sales.WebhookLogger/Gems.Sales.WebhookLogger.csproj" />
+  <Project Path="Gems.Sales.Notifier/Gems.Sales.Notifier.csproj" />
 </Solution>

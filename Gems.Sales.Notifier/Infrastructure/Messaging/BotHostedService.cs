@@ -7,7 +7,7 @@ using Serilog;
 
 namespace Gems.Sales.Notifier.Infrastructure.Messaging
 {
-    internal sealed class BotHostedService : BackgroundService
+    internal sealed class BotHostedService : IHostedService
     {
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
         private readonly IServiceScopeFactory _scopeFactory;

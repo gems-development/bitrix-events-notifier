@@ -1,11 +1,7 @@
-using System.Collections.Concurrent;
 using Gems.Sales.Notifier.Infrastructure.Messaging;
-using Gems.Sales.Notifier.Models;
 using Gems.Sales.Notifier.Options;
-using Gems.Sales.Notifier.UseCases.NotifyTaggedUsers;
 using MAX.Bot.Extensions;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Serilog;
 using Winton.Extensions.Configuration.Consul;
 
@@ -23,6 +19,7 @@ builder.Host.UseSerilog((context, services, configuration) =>
 });
 
 //Привязка конфигурации к классу для user's id
+builder.Services.Configure<SupportedEventsOptions>(builder.Configuration.GetSection(SupportedEventsOptions.SectionName));
 builder.Services.Configure<UsersMapOptions>(builder.Configuration.GetSection(UsersMapOptions.SectionName));
 
 //Проверка наличия токена
@@ -44,13 +41,18 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
     app.MapOpenApi();
-app.MapPost("/webhooks", async([FromBody] BitrixWebhookRequestDto request, ISender sender, CancellationToken cancellationToken) =>
+
+app.MapPost("/webhooks", async(HttpRequest request, IOptions<SupportedEventsOptions> options, CancellationToken cancellationToken) =>
 {
-    var command = new NotifyTaggedUsersCommand(request.UserIds);
+    var form = await request.ReadFormAsync();
+    var eventType = form["userevent"].ToString();
 
-    await sender.Send(command, cancellationToken);
+    if (!options.Value.Contains(eventType))
+        return Results.Ok();
 
-    Results.Ok();
+    // TODO: положить идентификатор комментария в очередь для последующей обработки.
+
+    return Results.Ok();
 });
 
 await app.RunAsync();

@@ -7,7 +7,11 @@
       "launchBrowser": false,
       "applicationUrl": "http://localhost:5173",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "BOT_TOKEN": "1234567890:ABCdefGHIjklMNOpqrsTUVwxyz",
+        "GROUP_CHAT_ID": "12345",
+        "SupportedEvents__0": "ONCRMTIMELINECOMMENTADD",
+        "SupportedEvents__1": "ONCRMTIMELINECOMMENTUPDATE"
       }
     },
     "https": {
@@ -18,7 +22,9 @@
         "environmentVariables": {
           "ASPNETCORE_ENVIRONMENT": "Development",
           "BOT_TOKEN": "1234567890:ABCdefGHIjklMNOpqrsTUVwxyz",
-          "GROUP_CHAT_ID": "12345"
+          "GROUP_CHAT_ID": "12345",
+          "SupportedEvents__0": "ONCRMTIMELINECOMMENTADD",
+          "SupportedEvents__1": "ONCRMTIMELINECOMMENTUPDATE"
         }
       }
     }

@@ -1,4 +1,4 @@
-﻿namespace Gems.Sales.Notifier.Bot
+﻿namespace Gems.Sales.Notifier.Infrastructure.Messaging
 {
     public interface IMessenger
     {

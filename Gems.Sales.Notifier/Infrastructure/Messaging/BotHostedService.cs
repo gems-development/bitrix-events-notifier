@@ -1,33 +1,36 @@
-﻿using Gems.Sales.Notifier.Models;
+﻿using Gems.Sales.Notifier.Options;
 using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request.Message;
 using Microsoft.Extensions.Options;
 using Serilog;
 
-namespace Gems.Sales.Notifier.Bot
+namespace Gems.Sales.Notifier.Infrastructure.Messaging
 {
-    public class BotHostedService : IHostedService
+    internal sealed class BotHostedService : BackgroundService
     {
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
         private readonly IServiceScopeFactory _scopeFactory;
+
         public BotHostedService(IOptions<UsersMapOptions> usersMapOptions, IServiceScopeFactory scopeFactory)
         {
             _usersMapOptions = usersMapOptions;
             _scopeFactory = scopeFactory;
         }
+
         public async Task StartAsync(CancellationToken stoppingToken)
         {
             Log.Information("Бот запущен");
             await StartBot(stoppingToken);
-
         }
+
         public Task StopAsync(CancellationToken stoppingToken)
         {
             Log.Information("Бот остановлен");
 
             return Task.CompletedTask;
         }
+
         public async Task StartBot(CancellationToken stoppingToken)
         {
             using (var scope = _scopeFactory.CreateScope())
@@ -63,6 +66,7 @@ namespace Gems.Sales.Notifier.Bot
             }
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
+
         //Метод для отправки приветственного сообщения
         private async Task SendWelcomeMessage(IMaxBotClient botClient, long chatId)
         {
@@ -73,6 +77,7 @@ namespace Gems.Sales.Notifier.Bot
             });
             Log.Information($"Отправлено приветственное сообщение для {chatId}");
         }
+
         //Метод для отправки конфигурации
         private async Task SendConfigMessage(IMaxBotClient botClient, long chatId)
         {

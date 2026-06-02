@@ -1,5 +1,7 @@
-using Gems.Sales.Notifier.Bot;
+using System.Collections.Concurrent;
+using Gems.Sales.Notifier.Infrastructure.Messaging;
 using Gems.Sales.Notifier.Models;
+using Gems.Sales.Notifier.Options;
 using Gems.Sales.Notifier.UseCases.NotifyTaggedUsers;
 using MAX.Bot.Extensions;
 using MediatR;
@@ -41,14 +43,14 @@ builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", op
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
-	app.MapOpenApi();
+    app.MapOpenApi();
 app.MapPost("/webhooks", async([FromBody] BitrixWebhookRequestDto request, ISender sender, CancellationToken cancellationToken) =>
-	{
-        var command = new NotifyTaggedUsersCommand(request.UserIds);
-        
-        await sender.Send(command, cancellationToken);
+{
+    var command = new NotifyTaggedUsersCommand(request.UserIds);
 
-        Results.Ok();
-    });
+    await sender.Send(command, cancellationToken);
+
+    Results.Ok();
+});
 
 await app.RunAsync();

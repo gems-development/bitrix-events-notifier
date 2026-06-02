@@ -1,4 +1,4 @@
-﻿namespace Gems.Sales.Notifier.Models
+﻿namespace Gems.Sales.Notifier.Options
 {
     public class UsersMapOptions
     {

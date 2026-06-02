@@ -1,12 +1,12 @@
-﻿using Gems.Sales.Notifier.Bot;
-using Gems.Sales.Notifier.Models;
+﻿using Gems.Sales.Notifier.Infrastructure.Messaging;
+using Gems.Sales.Notifier.Options;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Serilog;
 
 namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
 {
-    public class NotifyTaggedUsersCommandHandler : IRequestHandler<NotifyTaggedUsersCommand>
+    internal sealed class NotifyTaggedUsersCommandHandler : IRequestHandler<NotifyTaggedUsersCommand>
     {
         private readonly IMessenger _messageSender;
         private readonly IOptions<UsersMapOptions> _usersMapOptions;

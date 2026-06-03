@@ -36,7 +36,7 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
             }
             throw new NotImplementedException();
         }
-        private List<string> GetMaxId(int[] bitrixIds)
+        private List<string> GetMaxId(long[] bitrixIds)
         {
             string[] bitrixUsers = Array.ConvertAll(bitrixIds, x => x.ToString());
             var foundMaxIds = new List<string>();

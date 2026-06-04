@@ -1,6 +1,5 @@
 ﻿using Gems.Sales.Notifier.Application;
 using Gems.Sales.Notifier.UseCases.GetTaggedUserIds;
-using Gems.Sales.Notifier.UseCases.NotifyTaggedUsers;
 using MediatR;
 
 namespace Gems.Sales.Notifier.Infrastructure

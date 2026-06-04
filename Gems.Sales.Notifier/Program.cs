@@ -63,32 +63,9 @@ app.MapPost("/webhooks", async(
     if (!options.Value.Contains(eventType))
         return Results.Ok();
 
-    // TODO: положить идентификатор комментария в очередь для последующей обработки.
     var commentId = Convert.ToInt64(form["data[FIELDS][ID]"]);
     queue.Enqueue(commentId);
 
     return Results.Ok();
 });
-//// ============ ТЕСТОВЫЙ БЛОК ============
-//using (var scope = app.Services.CreateScope())
-//{
-//    var queue = scope.ServiceProvider.GetRequiredService<IRequestQueue<long>>();
-//    var client = scope.ServiceProvider.GetRequiredService<ISalesManagementSystemClient>();
-
-//    // Кладём тестовый ID в очередь
-//    queue.Enqueue(26890);
-
-//    // Вызываем метод (нужно привести к BitrixClient или добавить метод в интерфейс)
-//    if (client is BitrixClient bitrixClient)
-//    {
-//        await bitrixClient.GetBitrixIds();
-//    }
-//}
-//// =======================================ыы
 await app.RunAsync();
-//1. ISalesManagmentSystemClient и реализ BitrixClient
-//2. DI ISalesManagmentSystemClient BitrixClient
-//3. Получить через инъекцию в геттеггедюзерайдис
-//4. В БитриксКлиенте получить через диай IHttpClientFactory c помощью которой получить экземпляр http клиента
-//5. С помощью хттпклиента сделать запрос к апи битрикса на получение комментария
-//6. Вернули ответ и перешли в юзкейс, извлечь айди юзера если есть(может быть много)

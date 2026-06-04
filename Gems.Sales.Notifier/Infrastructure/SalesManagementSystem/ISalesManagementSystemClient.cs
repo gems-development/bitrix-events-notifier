@@ -2,6 +2,6 @@
 {
     public interface ISalesManagementSystemClient
     {
-        public Task GetComment();
+        public Task<string?> GetComment(long commentId);
     }
 }

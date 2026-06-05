@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Gems.Sales.Notifier.Tests/Gems.Sales.Notifier.Tests.csproj" Id="c5125501-2577-4923-97c0-92e5a1c1ba09" />
   <Project Path="Gems.Sales.Notifier/Gems.Sales.Notifier.csproj" />
   <Project Path="Gems.Sales.WebhookLogger/Gems.Sales.WebhookLogger.csproj" />
 </Solution>

@@ -1,26 +1,21 @@
-﻿using Gems.Sales.Notifier.Infrastructure.SalesManagementSystem;
+﻿using Gems.Sales.Notifier.Application;
+using Gems.Sales.Notifier.Infrastructure.SalesManagementSystem;
 using MediatR;
-using System.Text.RegularExpressions;
 
 namespace Gems.Sales.Notifier.UseCases.GetTaggedUserIds
 {
-    public class GetTaggedUserIdsQueryHandler(ISalesManagementSystemClient client) : IRequestHandler<GetTaggedUserIdsQuery, long[]>
+    public class GetTaggedUserIdsQueryHandler(ISalesManagementSystemClient client, IUserIdExtractor extractor) : IRequestHandler<GetTaggedUserIdsQuery, long[]>
     {
+
         public async Task<long[]> Handle(GetTaggedUserIdsQuery request, CancellationToken cancellationToken)
         {
-            var comment = await client.GetComment(request.commentId);
+            var comment = await client.GetComment(request.commentId, cancellationToken);
             if (string.IsNullOrWhiteSpace(comment))
             { 
                 return Array.Empty<long>();
             }
-            long[] userIds = ExtractUserId(comment);
+            long[] userIds = extractor.ExtractUserIds(comment);
             return userIds;
-        }
-        private long[] ExtractUserId(string comment)
-        {
-            return Regex.Matches(comment, @"\[USER=(\d+)\]")
-        .Select(match => long.Parse(match.Groups[1].Value))
-        .ToArray();
         }
     }
 }

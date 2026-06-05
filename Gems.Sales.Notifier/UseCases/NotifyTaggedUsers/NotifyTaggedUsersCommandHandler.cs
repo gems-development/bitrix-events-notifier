@@ -41,7 +41,6 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
             string[] bitrixUsers = Array.ConvertAll(bitrixIds, x => x.ToString());
             var foundMaxIds = new List<string>();
 
-            // Получаем список ключей для доступа по индексу
             var keysList = new List<string>(_usersMapOptions.Value.Map.Keys);
 
             for (int i = 0; i < keysList.Count; i++)
@@ -49,7 +48,6 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
                 string key = keysList[i];
                 string value = _usersMapOptions.Value.Map[key];
 
-                // Ищем совпадение с любым из целевых значений
                 if (Array.Exists(bitrixUsers, v => v == value))
                 {
                     foundMaxIds.Add(key);

@@ -1,5 +1,6 @@
 ﻿using Gems.Sales.Notifier.Application;
 using Gems.Sales.Notifier.UseCases.GetTaggedUserIds;
+using Gems.Sales.Notifier.UseCases.NotifyTaggedUsers;
 using MediatR;
 
 namespace Gems.Sales.Notifier.Infrastructure
@@ -7,11 +8,11 @@ namespace Gems.Sales.Notifier.Infrastructure
     internal sealed class RequestQueueHandler : BackgroundService
     {
         private readonly IRequestQueue<long> _queue;
-        private readonly ISender sender;
-        public RequestQueueHandler(IRequestQueue<long> queue, ISender sender)
+        private readonly IServiceScopeFactory _scopeFactory;
+        public RequestQueueHandler(IRequestQueue<long> queue, IServiceScopeFactory scopeFactory)
         {
             _queue = queue;
-            this.sender = sender;
+            _scopeFactory = scopeFactory;
         }
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         { 
@@ -19,11 +20,15 @@ namespace Gems.Sales.Notifier.Infrastructure
             {
                 if (_queue.Count > 0)
                 {
-                    var query = new GetTaggedUserIdsQuery(_queue.Dequeue());
-                    await sender.Send(query, cancellationToken);
-                    //var command = new NotifyTaggedUsersCommand([]/*_queue.Dequeue()*/);
+                    using (var scope = _scopeFactory.CreateScope())
+                    {
+                        var sender = scope.ServiceProvider.GetRequiredService<ISender>();
+                        var query = new GetTaggedUserIdsQuery(_queue.Dequeue());
+                        var bitrixIds = await sender.Send(query, cancellationToken);
+                        var command = new NotifyTaggedUsersCommand(bitrixIds);
 
-                    //await sender.Send(command, cancellationToken);
+                        await sender.Send(command, cancellationToken);
+                    }
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);

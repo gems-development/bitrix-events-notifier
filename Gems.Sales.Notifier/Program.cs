@@ -42,7 +42,7 @@ builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", op
     options.ReloadOnChange = true;
     options.PollWaitTime = TimeSpan.FromSeconds(30);
 });
-
+builder.Services.AddScoped<IUserIdExtractor, UserIdExtractor>();
 builder.Services.AddSingleton<IRequestQueue<long>, RequestQueue<long>>();
 //builder.Services.AddHostedService<BotHostedService>();  !НУЖЕН ТОКЕН ДЛЯ ЗАПУСКА!
 builder.Services.AddHostedService<RequestQueueHandler>();

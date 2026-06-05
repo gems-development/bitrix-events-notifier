@@ -16,14 +16,14 @@ namespace Gems.Sales.Notifier.Infrastructure.SalesManagementSystem
             _bitrixOptions = bitrixOptions;
         }
 
-        public async Task<string?> GetComment(long commentId)
+        public async Task<string?> GetComment(long commentId, CancellationToken cancellationToken)
         {
             var payload = new { id = commentId };
             string json = JsonSerializer.Serialize(payload);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             string url = $"{_bitrixOptions.Value.ApiUrl}/{_bitrixOptions.Value.ApiToken}/crm.timeline.comment.get";
-            var response = await _httpClient.PostAsync($"{url}", content); // токен с хендлера
+            var response = await _httpClient.PostAsync($"{url}", content, cancellationToken);
             response.EnsureSuccessStatusCode();
 
             var rawResponse = await response.Content.ReadFromJsonAsync<BitrixResponseWrapperDto>();

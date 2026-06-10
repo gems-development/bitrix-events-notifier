@@ -5,6 +5,6 @@ namespace Gems.Sales.Notifier.Infrastructure.SalesManagementSystem.Dto
     public class BitrixResponseWrapperDto
     {
         [JsonPropertyName("result")]
-        public BitrixTaskDto Result { get; set; }
+        public BitrixTaskDto Result { get; set; } = null!;
     }
 }

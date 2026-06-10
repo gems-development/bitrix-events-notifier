@@ -32,6 +32,7 @@ Log.Information("Токен бота найден");
 builder.Services.AddMaxBotClient(botToken);
 builder.Services.AddScoped<IMessenger, MaxMessenger>();
 builder.Services.AddScoped<ISalesManagementSystemClient, BitrixClient>();
+builder.Services.AddScoped<INotificationMessageComposer, NotificationMessageComposer>();
 builder.Services.AddHttpClient<ISalesManagementSystemClient, BitrixClient>();
 
 //Настройка для Consul
@@ -68,4 +69,5 @@ app.MapPost("/webhooks", async(
 
     return Results.Ok();
 });
+
 await app.RunAsync();

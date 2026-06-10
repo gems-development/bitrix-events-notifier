@@ -25,12 +25,16 @@ namespace Gems.Sales.Notifier.Infrastructure
                         var sender = scope.ServiceProvider.GetRequiredService<ISender>();
                         var query = new GetTaggedUserIdsQuery(_queue.Dequeue());
                         var bitrixIds = await sender.Send(query, cancellationToken);
-                        var command = new NotifyTaggedUsersCommand(bitrixIds);
+                        if(bitrixIds == null)
+                        {
+                            continue;
+                        }
+                        var command = new NotifyTaggedUsersCommand(bitrixIds.Value.DealId, bitrixIds.Value.UserIds);
 
                         await sender.Send(command, cancellationToken);
                     }
                 }
-
+                
                 await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
             }
         }

@@ -1,4 +1,6 @@
-﻿using Gems.Sales.Notifier.Infrastructure.Messaging;
+﻿using Gems.Sales.Notifier.Application;
+using Gems.Sales.Notifier.Infrastructure.Messaging;
+using Gems.Sales.Notifier.Infrastructure.SalesManagementSystem;
 using Gems.Sales.Notifier.Options;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -10,35 +12,30 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
     {
         private readonly IMessenger _messageSender;
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
-        public NotifyTaggedUsersCommandHandler(IMessenger messageSender, IOptions<UsersMapOptions> usersMapOptions)
+        private readonly ISalesManagementSystemClient _systemClient;
+        private readonly INotificationMessageComposer _notificationMessageComposer;
+        public NotifyTaggedUsersCommandHandler(IMessenger messageSender, IOptions<UsersMapOptions> usersMapOptions, ISalesManagementSystemClient systemClient, INotificationMessageComposer notificationMessageComposer)
         {
             _messageSender = messageSender;
             _usersMapOptions = usersMapOptions;
+            _systemClient = systemClient;
+            _notificationMessageComposer = notificationMessageComposer;
         }
         public async Task Handle(NotifyTaggedUsersCommand request, CancellationToken cancellationToken)
         {
-            List<string> maxIds = GetMaxId(request.bitrixUserIds);
-            foreach (var maxUserId in maxIds)
+            //поменять словарь на список
+            IReadOnlyCollection<string> maxUserIds = GetMaxId(request.UserIds);
+            var title = _systemClient.GetDeal(request.DealId, cancellationToken);
+
+            foreach (var maxUserId in maxUserIds)
             {
-                foreach (var bitrixUserId in request.bitrixUserIds)
-                {
-                    if (maxUserId == bitrixUserId.ToString())
-                    {
-                        string msgText = "Вы были упомянуты в сделке";
-                        await _messageSender.SendNotification(Convert.ToInt32(maxUserId), msgText);
-                        Log.Information($"Пользователь с битрикс id {bitrixUserId} найден в Максе под id {maxUserId} и ему отправлено уведомление");
-                    }
-                    else
-                    {
-                        Log.Warning($"Пользователя с битрикс id {bitrixUserId} нет в Максе");
-                    }
-                }
+                string msgText = _notificationMessageComposer.BuildMessage(title.Result?.Title);
+                await _messageSender.SendNotification(Convert.ToInt32(maxUserId), msgText);
             }
-            throw new NotImplementedException();
         }
-        private List<string> GetMaxId(long[] bitrixIds)
+        private IReadOnlyCollection<string> GetMaxId(long[] bitrixIds)
         {
-            string[] bitrixUsers = Array.ConvertAll(bitrixIds, x => x.ToString());
+            string[] bitrixUsers = bitrixIds.Select(x => x.ToString()).ToArray();
             var foundMaxIds = new List<string>();
 
             var keysList = new List<string>(_usersMapOptions.Value.Map.Keys);
@@ -48,12 +45,26 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
                 string key = keysList[i];
                 string value = _usersMapOptions.Value.Map[key];
 
-                if (Array.Exists(bitrixUsers, v => v == value))
+                if (bitrixUsers.Contains(value))
                 {
                     foundMaxIds.Add(key);
+
+                    string bitrixUserId = value;
+                    string maxUserId = key;
+
+                    Log.Information($"Пользователь с битрикс id {bitrixUserId} найден в Максе под id {maxUserId}");
                 }
             }
-            return foundMaxIds;
+
+            foreach (var bitrixId in bitrixUsers)
+            {
+                if (!_usersMapOptions.Value.Map.Values.Contains(bitrixId))
+                {
+                    Log.Warning($"Пользователя с битрикс id {bitrixId} нет в Максе");
+                }
+            }
+
+            return foundMaxIds.AsReadOnly();
         }
     }
 }

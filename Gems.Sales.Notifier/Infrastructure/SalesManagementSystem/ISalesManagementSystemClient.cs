@@ -1,7 +1,9 @@
-﻿namespace Gems.Sales.Notifier.Infrastructure.SalesManagementSystem
+﻿using Gems.Sales.Notifier.Infrastructure.SalesManagementSystem.Models;
+namespace Gems.Sales.Notifier.Infrastructure.SalesManagementSystem
 {
     public interface ISalesManagementSystemClient
     {
-        public Task<string?> GetComment(long commentId, CancellationToken cancellationToken);
+        public Task<Comment?> GetComment(long id, CancellationToken cancellationToken);
+        public Task<Deal?> GetDeal (long id, CancellationToken cancellationToken);
     }
 }

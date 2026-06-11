@@ -29,7 +29,7 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
 
             foreach (var maxUserId in maxUserIds)
             {
-                string msgText = _notificationMessageComposer.BuildMessage(title.Result?.Title);
+                string msgText = _notificationMessageComposer.BuildMessage(title.Result?.Title, request.DealId);
                 await _messageSender.SendNotification(Convert.ToInt32(maxUserId), msgText);
             }
         }

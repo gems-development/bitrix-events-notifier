@@ -2,6 +2,6 @@
 {
     public interface INotificationMessageComposer
     {
-        public string BuildMessage(string? title);
+        public string BuildMessage(string? title, long dealId);
     }
 }

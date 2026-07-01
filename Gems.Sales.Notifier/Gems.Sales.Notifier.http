@@ -1,0 +1,6 @@
+@Gems.Sales.Notifier_HostAddress = http://localhost:5173
+
+GET {{Gems.Sales.Notifier_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

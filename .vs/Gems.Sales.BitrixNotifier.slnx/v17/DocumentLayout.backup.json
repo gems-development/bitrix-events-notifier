@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8A30AFF4-3A2E-42F1-2330-E5B23199753B}|Gems.Sales.Notifier\\Gems.Sales.Notifier.csproj|c:\\users\\user\\desktop\\gemsbot\\bitrix-events-notifier\\gems.sales.notifier\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8A30AFF4-3A2E-42F1-2330-E5B23199753B}|Gems.Sales.Notifier\\Gems.Sales.Notifier.csproj|solutionrelative:gems.sales.notifier\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A30AFF4-3A2E-42F1-2330-E5B23199753B}|Gems.Sales.Notifier\\Gems.Sales.Notifier.csproj|c:\\users\\user\\desktop\\gemsbot\\bitrix-events-notifier\\gems.sales.notifier\\gems.sales.notifier.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{8A30AFF4-3A2E-42F1-2330-E5B23199753B}|Gems.Sales.Notifier\\Gems.Sales.Notifier.csproj|solutionrelative:gems.sales.notifier\\gems.sales.notifier.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A30AFF4-3A2E-42F1-2330-E5B23199753B}|Gems.Sales.Notifier\\Gems.Sales.Notifier.csproj|c:\\users\\user\\desktop\\gemsbot\\bitrix-events-notifier\\gems.sales.notifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A30AFF4-3A2E-42F1-2330-E5B23199753B}|Gems.Sales.Notifier\\Gems.Sales.Notifier.csproj|solutionrelative:gems.sales.notifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\Gems.Sales.Notifier\\appsettings.json",
+              "RelativeDocumentMoniker": "Gems.Sales.Notifier\\appsettings.json",
+              "ToolTip": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\Gems.Sales.Notifier\\appsettings.json",
+              "RelativeToolTip": "Gems.Sales.Notifier\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-01T09:48:18.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Gems.Sales.Notifier.http",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\Gems.Sales.Notifier\\Gems.Sales.Notifier.http",
+              "RelativeDocumentMoniker": "Gems.Sales.Notifier\\Gems.Sales.Notifier.http",
+              "ToolTip": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\Gems.Sales.Notifier\\Gems.Sales.Notifier.http",
+              "RelativeToolTip": "Gems.Sales.Notifier\\Gems.Sales.Notifier.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-06-01T09:48:10.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\Gems.Sales.Notifier\\Program.cs",
+              "RelativeDocumentMoniker": "Gems.Sales.Notifier\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\GemsBot\\bitrix-events-notifier\\Gems.Sales.Notifier\\Program.cs",
+              "RelativeToolTip": "Gems.Sales.Notifier\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T09:47:55.162Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

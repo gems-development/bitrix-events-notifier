@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+COPY ["Gems.Sales.Notifier/", "Gems.Sales.Notifier/"]
+
+WORKDIR "/src/Gems.Sales.Notifier"
+
+RUN dotnet restore "Gems.Sales.Notifier.csproj"
+
+FROM build AS publish
+RUN dotnet publish "Gems.Sales.Notifier.csproj" -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS finale
+
+WORKDIR /app
+
+COPY --from=publish /app/publish .
+
+ENTRYPOINT ["dotnet", "Gems.Sales.Notifier.dll"]

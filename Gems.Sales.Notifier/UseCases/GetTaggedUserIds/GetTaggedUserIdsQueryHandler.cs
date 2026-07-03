@@ -13,7 +13,6 @@ namespace Gems.Sales.Notifier.UseCases.GetTaggedUserIds
             {
                 return null;
             }
-            var deal = await client.GetDeal(comment.DealId, cancellationToken);
             if (string.IsNullOrWhiteSpace(comment?.Body))
             {
                 return null;

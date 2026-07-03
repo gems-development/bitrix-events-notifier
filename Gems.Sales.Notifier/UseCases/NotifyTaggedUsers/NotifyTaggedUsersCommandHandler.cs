@@ -14,7 +14,11 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
         private readonly ISalesManagementSystemClient _systemClient;
         private readonly INotificationMessageComposer _notificationMessageComposer;
-        public NotifyTaggedUsersCommandHandler(IMessenger messageSender, IOptions<UsersMapOptions> usersMapOptions, ISalesManagementSystemClient systemClient, INotificationMessageComposer notificationMessageComposer)
+        public NotifyTaggedUsersCommandHandler(
+            IMessenger messageSender,
+            IOptions<UsersMapOptions> usersMapOptions,
+            ISalesManagementSystemClient systemClient,
+            INotificationMessageComposer notificationMessageComposer)
         {
             _messageSender = messageSender;
             _usersMapOptions = usersMapOptions;
@@ -23,13 +27,12 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
         }
         public async Task Handle(NotifyTaggedUsersCommand request, CancellationToken cancellationToken)
         {
-            //поменять словарь на список
             IReadOnlyCollection<string> maxUserIds = GetMaxId(request.UserIds);
-            var title = _systemClient.GetDeal(request.DealId, cancellationToken);
+            var deal = await _systemClient.GetDeal(request.DealId, cancellationToken);
 
             foreach (var maxUserId in maxUserIds)
             {
-                string msgText = _notificationMessageComposer.BuildMessage(title.Result?.Title, request.DealId);
+                string msgText = _notificationMessageComposer.BuildMessage(deal?.Title, request.DealId);
                 await _messageSender.SendNotification(Convert.ToInt32(maxUserId), msgText);
             }
         }
@@ -37,7 +40,6 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
         {
             string[] bitrixUsers = bitrixIds.Select(x => x.ToString()).ToArray();
             var foundMaxIds = new List<string>();
-
             var keysList = new List<string>(_usersMapOptions.Value.Map.Keys);
 
             for (int i = 0; i < keysList.Count; i++)
@@ -45,20 +47,16 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
                 string key = keysList[i];
                 string value = _usersMapOptions.Value.Map[key];
 
-                if (bitrixUsers.Contains(value))
+                if (bitrixUsers.Contains(key))
                 {
-                    foundMaxIds.Add(key);
-
-                    string bitrixUserId = value;
-                    string maxUserId = key;
-
-                    Log.Information($"Пользователь с битрикс id {bitrixUserId} найден в Максе под id {maxUserId}");
+                    foundMaxIds.Add(value);
+                    Log.Information($"Пользователь с битрикс id {key} найден в Максе под id {value}");
                 }
             }
 
             foreach (var bitrixId in bitrixUsers)
             {
-                if (!_usersMapOptions.Value.Map.Values.Contains(bitrixId))
+                if (!_usersMapOptions.Value.Map.Keys.Contains(bitrixId))
                 {
                     Log.Warning($"Пользователя с битрикс id {bitrixId} нет в Максе");
                 }

@@ -45,7 +45,7 @@ builder.Configuration.AddConsul("Gems.Sales.BitrixNotifier/appsettings.json", op
 });
 builder.Services.AddScoped<IUserIdExtractor, UserIdExtractor>();
 builder.Services.AddSingleton<IRequestQueue<long>, RequestQueue<long>>();
-//builder.Services.AddHostedService<BotHostedService>();  !НУЖЕН ТОКЕН ДЛЯ ЗАПУСКА!
+//builder.Services.AddHostedService<BotHostedService>(); // !НУЖЕН ТОКЕН ДЛЯ ЗАПУСКА!
 builder.Services.AddHostedService<RequestQueueHandler>();
 var app = builder.Build();
 
@@ -53,9 +53,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
 app.MapPost("/webhooks", async(
-    HttpRequest request, 
-    IOptions<SupportedEventsOptions> options, 
-    CancellationToken cancellationToken,
+    HttpRequest request,
+    IOptions<SupportedEventsOptions> options,
     IRequestQueue<long> queue) =>
 {
     var form = await request.ReadFormAsync();

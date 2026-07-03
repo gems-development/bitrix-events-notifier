@@ -14,16 +14,20 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
         private readonly ISalesManagementSystemClient _systemClient;
         private readonly INotificationMessageComposer _notificationMessageComposer;
+        private readonly ILogger<NotifyTaggedUsersCommandHandler> _logger;
+
         public NotifyTaggedUsersCommandHandler(
             IMessenger messageSender,
             IOptions<UsersMapOptions> usersMapOptions,
             ISalesManagementSystemClient systemClient,
-            INotificationMessageComposer notificationMessageComposer)
+            INotificationMessageComposer notificationMessageComposer,
+            ILogger<NotifyTaggedUsersCommandHandler> logger)
         {
             _messageSender = messageSender;
             _usersMapOptions = usersMapOptions;
             _systemClient = systemClient;
             _notificationMessageComposer = notificationMessageComposer;
+            _logger = logger;
         }
         public async Task Handle(NotifyTaggedUsersCommand request, CancellationToken cancellationToken)
         {
@@ -32,8 +36,15 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
 
             foreach (var maxUserId in maxUserIds)
             {
-                string msgText = _notificationMessageComposer.BuildMessage(deal?.Title, request.DealId);
-                await _messageSender.SendNotification(Convert.ToInt32(maxUserId), msgText);
+                try
+                {
+                    string msgText = _notificationMessageComposer.BuildMessage(deal?.Title, request.DealId);
+                    await _messageSender.SendMessage(Convert.ToInt32(maxUserId), msgText, cancellationToken);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Произошла ошибка при отправке сообщения пользователю {UserId}", maxUserId);
+                }
             }
         }
         private IReadOnlyCollection<string> GetMaxId(long[] bitrixIds)

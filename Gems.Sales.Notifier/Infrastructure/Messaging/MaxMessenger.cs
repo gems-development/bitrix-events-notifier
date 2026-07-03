@@ -12,14 +12,15 @@ namespace Gems.Sales.Notifier.Infrastructure.Messaging
             _botClient = botClient;
         }
 
-        //Метод для отправки уведомления о сделке
-        public Task SendNotification(long chatId, string text)
+        public Task SendMessage(long chatId, string message, CancellationToken cancellationToken)
         {
-            return _botClient.SendMessageAsync(new SendMessageRequest
-            {
-                ChatId = chatId,
-                Text = text
-            });
+            return _botClient.SendMessageAsync(
+                new SendMessageRequest
+                {
+                    UserId = chatId,
+                    Text = message
+                },
+                cancellationToken);
         }
     }
 }

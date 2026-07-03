@@ -2,6 +2,6 @@
 {
     public interface IMessenger
     {
-        Task SendNotification(long chatId, string text);
+        Task SendMessage(long chatId, string message, CancellationToken cancellationToken);
     }
 }

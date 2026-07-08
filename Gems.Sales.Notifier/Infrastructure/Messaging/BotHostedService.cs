@@ -2,7 +2,8 @@
 using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models;
 using Microsoft.Extensions.Options;
-using Serilog;
+using Microsoft.Extensions.Logging; // ← Добавить
+using Microsoft.Extensions.DependencyInjection; // ← Добавить для IServiceScopeFactory
 
 namespace Gems.Sales.Notifier.Infrastructure.Messaging
 {
@@ -10,23 +11,27 @@ namespace Gems.Sales.Notifier.Infrastructure.Messaging
     {
         private readonly IOptions<UsersMapOptions> _usersMapOptions;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly ILogger<BotHostedService> _logger; 
 
-        public BotHostedService(IOptions<UsersMapOptions> usersMapOptions, IServiceScopeFactory scopeFactory)
+        public BotHostedService(
+            IOptions<UsersMapOptions> usersMapOptions,
+            IServiceScopeFactory scopeFactory,
+            ILogger<BotHostedService> logger) 
         {
             _usersMapOptions = usersMapOptions;
             _scopeFactory = scopeFactory;
+            _logger = logger; 
         }
 
         public async Task StartAsync(CancellationToken stoppingToken)
         {
-            Log.Information("Бот запущен");
+            _logger.LogInformation("Бот запущен"); 
             await StartBot(stoppingToken);
         }
 
         public Task StopAsync(CancellationToken stoppingToken)
         {
-            Log.Information("Бот остановлен");
-
+            _logger.LogInformation("Бот остановлен"); 
             return Task.CompletedTask;
         }
 
@@ -45,19 +50,19 @@ namespace Gems.Sales.Notifier.Infrastructure.Messaging
                             switch (update)
                             {
                                 case MessageCreatedUpdate messageCreated:
-                                {
-                                    await HandleIncomingMessage(messageCreated, messenger, stoppingToken);
-
-                                    break;
-                                }
+                                    {
+                                        await HandleIncomingMessage(messageCreated, messenger, stoppingToken);
+                                        break;
+                                    }
                             }
                         }
                         catch (Exception ex)
                         {
-                            Log.Error(
-                                ex,
-                                "Произошла ошибка при обработке сообщения, отправленного пользователем {UserId}",
-                                update is MessageCreatedUpdate messageCreated ? messageCreated.Message?.Sender?.Id : "N/A");
+                            var userId = update is MessageCreatedUpdate messageCreated
+                                ? messageCreated.Message?.Sender?.Id.ToString() ?? "N/A"
+                                : "N/A";
+
+                            _logger.LogError(ex, "Произошла ошибка при обработке сообщения, отправленного пользователем {UserId}", userId); // ← Заменено
                         }
                     },
                     limit: 100,
@@ -78,8 +83,7 @@ namespace Gems.Sales.Notifier.Infrastructure.Messaging
 
             if (message is null)
             {
-                Log.Warning("Не удалось извлечь тело сообщения");
-
+                _logger.LogWarning("Не удалось извлечь тело сообщения"); 
                 return false;
             }
 
@@ -87,14 +91,13 @@ namespace Gems.Sales.Notifier.Infrastructure.Messaging
 
             if (senderId is null)
             {
-                Log.Warning("Не удалось определить отправителя сообщения");
-
+                _logger.LogWarning("Не удалось определить отправителя сообщения"); 
                 return false;
             }
 
             var msgText = message.Body?.Text;
 
-            Log.Information("От пользователя {SenderId} получено сообщение: {Text}", senderId, msgText);
+            _logger.LogInformation("От пользователя {SenderId} получено сообщение: {Text}", senderId, msgText); // ← Заменено
 
             switch (msgText)
             {

@@ -4,7 +4,7 @@ using Gems.Sales.Notifier.Infrastructure.SalesManagementSystem;
 using Gems.Sales.Notifier.Options;
 using MediatR;
 using Microsoft.Extensions.Options;
-using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
 {
@@ -29,6 +29,7 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
             _notificationMessageComposer = notificationMessageComposer;
             _logger = logger;
         }
+
         public async Task Handle(NotifyTaggedUsersCommand request, CancellationToken cancellationToken)
         {
             IReadOnlyCollection<string> maxUserIds = GetMaxId(request.UserIds);
@@ -47,6 +48,7 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
                 }
             }
         }
+
         private IReadOnlyCollection<string> GetMaxId(long[] bitrixIds)
         {
             string[] bitrixUsers = bitrixIds.Select(x => x.ToString()).ToArray();
@@ -61,7 +63,7 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
                 if (bitrixUsers.Contains(key))
                 {
                     foundMaxIds.Add(value);
-                    Log.Information($"Пользователь с битрикс id {key} найден в Максе под id {value}");
+                    _logger.LogInformation("Пользователь с битрикс id {BitrixId} найден в Максе под id {MaxId}", key, value);
                 }
             }
 
@@ -69,7 +71,7 @@ namespace Gems.Sales.Notifier.UseCases.NotifyTaggedUsers
             {
                 if (!_usersMapOptions.Value.Map.Keys.Contains(bitrixId))
                 {
-                    Log.Warning($"Пользователя с битрикс id {bitrixId} нет в Максе");
+                    _logger.LogWarning("Пользователя с битрикс id {BitrixId} нет в Максе", bitrixId);
                 }
             }
 

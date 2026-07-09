@@ -2,8 +2,8 @@
 using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Logging; // ← Добавить
-using Microsoft.Extensions.DependencyInjection; // ← Добавить для IServiceScopeFactory
+using Microsoft.Extensions.Logging; 
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Gems.Sales.Notifier.Infrastructure.Messaging
 {
